@@ -81,3 +81,16 @@ plt.xlabel('Predicted')
 plt.ylabel('Actual')
 plt.title('Confusion Matrix')
 plt.show()
+# Visualize Precision, Recall, and F1 Score
+metrics = pd.DataFrame({
+    'Metric': ['Accuracy', 'Precision', 'Recall', 'F1 Score'],
+    'Score': [accuracy_score(y_medical_test, y_pred_logistic),
+              precision_score(y_medical_test, y_pred_logistic, zero_division=0),
+              recall_score(y_medical_test, y_pred_logistic, zero_division=0),
+              f1_score(y_medical_test, y_pred_logistic, zero_division=0)]
+})
+
+sns.barplot(x='Metric', y='Score', data=metrics)
+plt.ylim(0, 1)
+plt.title('Evaluation Metrics')
+plt.show()
